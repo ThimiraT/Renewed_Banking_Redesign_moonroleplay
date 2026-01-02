@@ -1,10 +1,11 @@
 :root {
     --clr-primary: #393A45;
     --clr-primary-light: #393A45;
-    --clr-primary-dark: transparant;
+    --clr-primary-dark: #1a1d23;
 
     --clr-green: #34b8a8;
     --clr-orange: #e08c2b;
+    --clr-blue: #0095ff;
     --clr-grey: #505050;
 
     --font-family: "Roboto", sans-serif;

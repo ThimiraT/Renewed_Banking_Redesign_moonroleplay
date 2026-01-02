@@ -18,73 +18,88 @@
     });
 </script>
 
-<section class="account" on:click={()=>handleAccountClick(account.id)} on:keydown={()=>{}}>
-    <h4>
-        {account.type}{$translations.account}/ {account.id}
-    </h4>
-    <h5>
-        {account.type}{$translations.account}<br />
-        <span>{account.name}</span>
-    </h5>
-
-    <div class="price">
-        <strong>{formatMoney(account.amount)}</strong> <br />
-        <span>{$translations.balance}</span>
+<div class="account-card" on:click={()=>handleAccountClick(account.id)} on:keydown={()=>{}}>
+    <div class="card-content">
+        <div class="card-top">
+            <div class="card-info">
+                <h4>{account.type}{$translations.account}</h4>
+                <p class="account-id">{account.id}</p>
+                <p class="account-name">{account.name}</p>
+            </div>
+            <div class="card-icons">
+                <i class="fas fa-credit-card"></i>
+                <i class="fas fa-credit-card"></i>
+            </div>
+        </div>
+        <div class="card-amount">
+            <strong>{formatMoney(account.amount)}</strong>
+        </div>
     </div>
-
-    <div class="btns-group">
-        {#if !account.isFrozen}
-            {#if !isAtm}
-                <button class="btn btn-green" on:click={() => handleButton(account.id, "deposit")}>{$translations.deposit_but}</button>
-            {/if}
-            <button class="btn btn-orange" on:click={() => handleButton(account.id, "withdraw")}>{$translations.withdraw_but}</button>
-            <button class="btn btn-grey" on:click={() => handleButton(account.id, "transfer")}>{$translations.transfer_but}</button>
-        {:else}
-            {$translations.frozen}
-        {/if}
-    </div>
-</section>
+</div>
 
 <style>
-    .account {
-        background-color: var(--clr-primary);
-        padding: 1rem;
-        border-radius: 10px;
+    .account-card {
+        min-width: 280px;
+        background: linear-gradient(135deg, #1e3a5f 0%, #2a4a7f 100%);
+        padding: 1.5rem;
+        border-radius: 12px;
         cursor: pointer;
-        box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-        -webkit-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-        -moz-box-shadow: 3px 5px 37px 4px rgba(48,48,48,0.38);
-    }
-    .account:not(:last-child) {
-        margin-bottom: 1.5rem;
+        border: 2px solid rgba(0, 149, 255, 0.3);
+        transition: all 0.3s ease;
+        color: white;
     }
 
-    h4 {
-        font-size: 1.5rem;
-        margin-bottom: 0.5rem;
-    }
-    h5 {
-        font-size: 1.2rem;
-    }
-    h5 span {
-        margin-top: 0.3rem;
+    .account-card:hover {
+        border-color: var(--clr-blue);
+        box-shadow: 0 0 20px rgba(0, 149, 255, 0.4);
     }
 
-    .price {
-        text-align: right;
+    .card-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 100%;
+    }
+
+    .card-top {
+        display: flex;
+        justify-content: space-between;
         margin-bottom: 1rem;
     }
-    .price strong {
-        font-size: 1.6rem;
+
+    .card-info h4 {
+        font-size: 0.95rem;
+        margin-bottom: 0.5rem;
+        color: rgba(255, 255, 255, 0.8);
     }
 
-    /* make first btn in btn-group take up the whole first row */
-  .btns-group > :first-child {
-    grid-column: 1 / -1;
-  }
-  .btns-group {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.5rem;
-  }
+    .account-id {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-bottom: 0.3rem;
+    }
+
+    .account-name {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+    }
+
+    .card-icons {
+        display: flex;
+        gap: 0.5rem;
+        opacity: 0.5;
+    }
+
+    .card-icons i {
+        font-size: 1.2rem;
+    }
+
+    .card-amount {
+        text-align: right;
+    }
+
+    .card-amount strong {
+        font-size: 1.3rem;
+        color: var(--clr-blue);
+    }
 </style>

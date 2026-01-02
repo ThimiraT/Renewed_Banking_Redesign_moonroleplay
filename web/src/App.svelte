@@ -10,9 +10,79 @@
     debugData([
         {
             action: "setVisible",
-            data: true,
+            data: {
+                status: true,
+                loading: false,
+                atm: false,
+                accounts: [
+                    {
+                        id: "1001",
+                        type: "Checking",
+                        name: "Main Account",
+                        amount: 5000,
+                        isFrozen: false,
+                        cash: 2500,
+                        transactions: [
+                            {
+                                trans_id: "TX001",
+                                message: "Salary Deposit",
+                                receiver: "Employer",
+                                amount: 2000,
+                                date: "2024-01-02"
+                            },
+                            {
+                                trans_id: "TX002",
+                                message: "Bill Payment",
+                                receiver: "Electric Company",
+                                amount: 150,
+                                date: "2024-01-01"
+                            }
+                        ]
+                    },
+                    {
+                        id: "1002",
+                        type: "Savings",
+                        name: "Savings Account",
+                        amount: 10000,
+                        isFrozen: false,
+                        cash: 0,
+                        transactions: []
+                    },
+                    {
+                        id: "1003",
+                        type: "Business",
+                        name: "Business Account",
+                        amount: 25000,
+                        isFrozen: false,
+                        cash: 0,
+                        transactions: []
+                    }
+                ]
+            },
         },
-    ]);
+        {
+            action: "updateLocale",
+            data: {
+                translations: {
+                    accounts: "Accounts",
+                    account_search: "Search accounts...",
+                    account_not_found: "No accounts found",
+                    transactions: "Transactions",
+                    trans_search: "Search transactions...",
+                    trans_not_found: "No transactions found",
+                    account: "Account",
+                    balance: "Balance",
+                    deposit_but: "Deposit",
+                    withdraw_but: "Withdraw",
+                    transfer_but: "Transfer",
+                    frozen: "Account Frozen",
+                    bank_name: "Banking System"
+                },
+                currency: "USD"
+            }
+        }
+    ], 500);
+</script>
 </script>
 
 <svelte:head>
